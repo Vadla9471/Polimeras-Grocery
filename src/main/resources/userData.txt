@@ -1,0 +1,4 @@
+('vineeth', 'vadlavineethkumar7@gmail.com', '1111', 'vineeth', 'kumar', '1234567890', '123 Admin St', 'New York', 'NY', '10001', 'ADMIN', NOW(), NOW(), TRUE),
+('alice', 'alice@example.com', 'a', 'Sarah', 'Johnson', '2345678901', '456 Main St', 'Chicago', 'IL', '60601', 'CUSTOMER', NOW(), NOW(), TRUE),
+('hari', 'bakkanolaharinathreddy@gmail.com', '2222', 'hari', 'nath', '3456789012', '789 Oak Ave', 'Los Angeles', 'CA', '90001', 'CUSTOMER', NOW(), NOW(), TRUE),
+('sai', 'aishettysaiteja@gmail.com', '333', 'Robert', 'Williams', '5678901234', '654 Admin Blvd', 'Phoenix', 'AZ', '85001', 'ADMIN', NOW(), NOW(), TRUE);
