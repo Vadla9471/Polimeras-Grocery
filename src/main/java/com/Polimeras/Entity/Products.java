@@ -3,12 +3,7 @@ package com.Polimeras.Entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -27,6 +22,7 @@ public class Products {
     private Category category;
     private int stockQuantity;
     private String imageName;
+    @Lob
     private byte[] imgUrl;
     private String imgType;
     private LocalDateTime createdAt;

@@ -20,17 +20,17 @@ public class HomeController {
     UsersRepository usersRepository;
 
 
-    @GetMapping("/product/{id}")
-    public Optional<Products> display(@PathVariable long id){
-        Optional<Products> products = productsRepository.findById(id);
-        System.out.println(products);
-        return products;
-    }
-    @GetMapping("/user/{id}")
-    public Optional<Users> usersHandle(@PathVariable long id){
-        Optional<Users> users = usersRepository.findById(id);
-        System.out.println(users);
-        return users;
-    }
+//    @GetMapping("/product/{id}")
+//    public Optional<Products> display(@PathVariable long id){
+//        Optional<Products> products = productsRepository.findById(id);
+//        System.out.println(products);
+//        return products;
+//    }
+//    @GetMapping("/user/{id}")
+//    public Optional<Users> usersHandle(@PathVariable long id){
+//        Optional<Users> users = usersRepository.findById(id);
+//        System.out.println(users);
+//        return users;
+//    }
 
 }
