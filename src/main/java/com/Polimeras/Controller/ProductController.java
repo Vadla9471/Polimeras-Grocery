@@ -5,8 +5,12 @@ import com.Polimeras.Entity.Products;
 import com.Polimeras.Repository.ProductsRepository;
 import com.Polimeras.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,11 +40,18 @@ public class ProductController {
         return byCategory;
     }
 
-//    @PostMapping("/product")
-//    public String postProduct(@RequestPart Products product){
-//        productsRepository.save(product);
-//        System.out.println(product);
-//        return "Executed";
-//    }
+    @GetMapping("/products/VEGETABLES")
+    public List<Products> category(){
+        List<Products> category = productService.getCategoryService();
+        System.out.println(category);
+        return category;
+    }
+
+    @PostMapping("/restProduct")
+    public void postProduct(@ModelAttribute Products product,
+                              @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+        Products products = productService.addProduct(product, imageFile);
+        System.out.println(products);
+    }
 
 }

@@ -14,4 +14,7 @@ public interface ProductsRepository extends JpaRepository<Products, Long> {
     @Query(value = "SELECT * FROM products WHERE category = ? LIMIT 1000",nativeQuery = true)
     List<Products> getCategory(Category category);
 
+    @Query(value = "SELECT * FROM products WHERE category = 'vegetables' LIMIT 1000",nativeQuery = true)
+    List<Products> getCategory();
+
 }
