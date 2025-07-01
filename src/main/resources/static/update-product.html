@@ -1,0 +1,104 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Update Product</title>-->
+<!--    <style>-->
+<!--        body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; }-->
+<!--        label { display: block; margin-top: 1rem; font-weight: 600; }-->
+<!--        input, textarea, select { width: 100%; padding: .5rem; }-->
+<!--        #loadBtn, button { margin-top: 1.2rem; padding: .6rem 1.2rem; }-->
+<!--        #status { margin-top: 1rem; font-weight: 600; }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Update an Existing Product</h1>-->
+
+<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; STEP 1: choose product ID & load &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+<!--<label for="pid">Product ID</label>-->
+<!--<input type="number" id="pid" min="1" placeholder="Enter ID and click Load" required>-->
+<!--<button id="loadBtn">Load product</button>-->
+
+<!--&lt;!&ndash; &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; STEP 2: edit & submit &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; &ndash;&gt;-->
+<!--<form id="updateForm" style="display:none;" enctype="multipart/form-data">-->
+<!--    <label for="name">Name</label>-->
+<!--    <input type="text" id="name" name="name" required>-->
+
+<!--    <label for="description">Description</label>-->
+<!--    <textarea id="description" name="description" rows="4" required></textarea>-->
+
+<!--    <label for="price">Price (₹)</label>-->
+<!--    <input type="number" id="price" name="price" step="0.01" required>-->
+
+<!--    <label for="category">Category</label>-->
+<!--    <select id="category" name="category" required>-->
+<!--        <option value="VEGETABLES">Vegetables</option>-->
+<!--        <option value="FRUITS">Fruits</option>-->
+<!--        <option value="GROCERY">Grocery</option>-->
+<!--    </select>-->
+
+<!--    <label for="stockQuantity">Stock quantity</label>-->
+<!--    <input type="number" id="stockQuantity" name="stockQuantity" min="0" required>-->
+
+<!--    <label>-->
+<!--        <input type="checkbox" id="active" name="active">-->
+<!--        Active-->
+<!--    </label>-->
+
+<!--    <label for="imageFile">Replace image (optional)</label>-->
+<!--    <input type="file" id="imageFile" name="imageFile" accept="image/*">-->
+
+<!--    <button type="submit">Update product</button>-->
+<!--</form>-->
+
+<!--<p id="status"></p>-->
+
+<!--<script>-->
+<!--    const loadBtn   = document.getElementById('loadBtn');-->
+<!--    const form      = document.getElementById('updateForm');-->
+<!--    const statusTxt = document.getElementById('status');-->
+
+<!--    loadBtn.addEventListener('click', async () => {-->
+<!--        const id = document.getElementById('pid').value;-->
+<!--        if (!id) { alert('Enter a product ID first'); return; }-->
+
+<!--        try {-->
+<!--            const res = await fetch(`/api/user/product/${id}`);-->
+<!--            if (!res.ok) { throw new Error('Product not found'); }-->
+<!--            const p = await res.json();-->
+
+<!--            // populate fields-->
+<!--            form.style.display = 'block';-->
+<!--            form.dataset.id = id;         // stash id for submit-->
+<!--            document.getElementById('name').value          = p.name;-->
+<!--            document.getElementById('description').value   = p.description;-->
+<!--            document.getElementById('price').value         = p.price;-->
+<!--            document.getElementById('category').value      = p.category;-->
+<!--            document.getElementById('stockQuantity').value = p.stockQuantity;-->
+<!--            document.getElementById('active').checked      = p.active;-->
+<!--            statusTxt.textContent = 'Product loaded ✔';-->
+<!--        } catch (err) {-->
+<!--            statusTxt.textContent = err.message;-->
+<!--            form.style.display = 'none';-->
+<!--        }-->
+<!--    });-->
+
+<!--    form.addEventListener('submit', async (e) => {-->
+<!--        e.preventDefault();-->
+<!--        const id = form.dataset.id;-->
+<!--        const fd = new FormData(form);-->
+
+<!--        // Ensure checkbox is sent when unchecked-->
+<!--        if (!fd.has('active')) fd.append('active', 'false');-->
+
+<!--        const res = await fetch(`/api/user/product/${id}`, {-->
+<!--            method: 'PUT',-->
+<!--            body: fd-->
+<!--        });-->
+
+<!--        statusTxt.textContent = res.ok ? 'Updated successfully ✔' :-->
+<!--            `Update failed (${res.status})`;-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

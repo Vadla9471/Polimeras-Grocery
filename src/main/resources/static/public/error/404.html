@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* Modern 404 Styling with Animation */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            color: #333;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6b6b, #3a86ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            margin: 1rem 0;
+            color: #2b2d42;
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #6c757d;
+        }
+
+        .btn-404 {
+            background: linear-gradient(135deg, #3a86ff, #8338ec);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-404:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+        }
+
+        .astronaut {
+            width: 150px;
+            margin: 2rem auto;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @media (max-width: 600px) {
+            .error-code { font-size: 5rem; }
+            .error-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="error-container">
+    <h1 class="error-code">404</h1>
+    <img class="astronaut" src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" alt="Lost astronaut">
+    <h2 class="error-title">Oops! Page Not Found</h2>
+    <p class="error-message">
+        The page you're looking for doesn't exist or has been moved.
+        <br>
+        Let's get you back to safety!
+    </p>
+    <a href="/hcl/" class="btn-404">Return Home</a>
+</div>
+</body>
+</html>

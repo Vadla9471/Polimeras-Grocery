@@ -1,17 +1,15 @@
 package com.Polimeras.Entity;
 
 import java.time.LocalDateTime;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Users {
 
@@ -28,11 +26,43 @@ public class Users {
     private String city;
     private String state;
     private String zipcode;
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(name = "otp_code")
+    private String otpCode;
+
+    public LocalDateTime getOtpExpiration() {
+        return otpExpiration;
+    }
+
+    public void setOtpExpiration(LocalDateTime otpExpiration) {
+        this.otpExpiration = otpExpiration;
+    }
+
+    public String getOtpCode() {
+        return otpCode;
+    }
+
+    public void setOtpCode(String otpCode) {
+        this.otpCode = otpCode;
+    }
+
+    @Column(name = "otp_expiration")
+    private LocalDateTime otpExpiration;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    //    @Enumerated(EnumType.STRING)
+//    private Role role;
+    private String role;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean isActive;
+
 
     public String getAddress() {
         return address;
@@ -67,7 +97,7 @@ public class Users {
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -114,13 +144,13 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
 
     public String getState() {
         return state;

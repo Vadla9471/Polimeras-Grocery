@@ -23,6 +23,7 @@ public class Products {
     private int stockQuantity;
     private String imageName;
     @Lob
+    @Basic(fetch = FetchType.LAZY)
     private byte[] imgUrl;
     private String imgType;
     private LocalDateTime createdAt;
