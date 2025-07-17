@@ -1,82 +1,85 @@
 package com.Polimeras.Entity;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.ToString;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Table(name = "order_items")
 public class OrderItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable = false, updatable = false)
-    private long id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users userID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JsonBackReference
+    @JoinColumn(name = "order_id")
+    private Orders order;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Products productID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Products product;
 
-    private int quantity;
+    private Integer quantity;
 
-    private double priceAtPurchase;
+    private double price;
 
-    private LocalDateTime createdAt;
+    public OrderItems() {}
 
-    //Getter & Setters
-
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    // ✅ Updated constructor with priceAtPurchase
+    public OrderItems(Orders order, Products product, Integer quantity, double price) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    // Getters and Setters
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public double getPriceAtPurchase() {
-        return priceAtPurchase;
+    public Orders getOrder() {
+        return order;
     }
 
-    public void setPriceAtPurchase(double priceAtPurchase) {
-        this.priceAtPurchase = priceAtPurchase;
+    public void setOrder(Orders order) {
+        this.order = order;
     }
 
-    public Products getProductID() {
-        return productID;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setProductID(Products productID) {
-        this.productID = productID;
+    public void setProduct(Products product) {
+        this.product = product;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public Users getUserID() {
-        return userID;
+    public double getPrice() {
+        return price;
     }
 
-    public void setUserID(Users userID) {
-        this.userID = userID;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+
+    public double getSubTotal() {
+        return price * quantity; // ✅ Use price at purchase for actual subtotal
     }
 }

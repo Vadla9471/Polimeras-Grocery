@@ -1,13 +1,16 @@
 package com.Polimeras.Entity;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Data
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class CartItems{
@@ -16,27 +19,63 @@ public class CartItems{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)  // ✅ fixed
-    private Cart cartId;
+    @JsonBackReference             // 👈 child side
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id")
+    @ToString.Exclude
+    private Cart cart;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)  // ✅ fixed
-    private Products productId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Products product;
 
-    private int quantity;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private Integer quantity;
 
-    //getter & setters
+    private double price;
+    private double subTotal;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime createdAt = LocalDateTime.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
-
-    public Cart getCartId() {
-        return cartId;
+    public CartItems() {
     }
 
-    public void setCartId(Cart cartId) {
-        this.cartId = cartId;
+    public CartItems(Products product, Cart cart, double price, Integer quantity) {
+        this.product = product;
+        this.cart = cart;
+        this.price= price;
+        this.quantity = quantity;
+    }
+
+    public CartItems(Cart cart, long id, double price, Products product, Integer quantity) {
+        this.cart = cart;
+        this.id = id;
+        this.price = price;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+//getter & setters
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cartId) {
+        this.cart = cartId;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -55,12 +94,12 @@ public class CartItems{
         this.id = id;
     }
 
-    public Products getProductId() {
-        return productId;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setProductId(Products productId) {
-        this.productId = productId;
+    public void setProduct(Products productId) {
+        this.product = productId;
     }
 
     public int getQuantity() {
@@ -71,6 +110,10 @@ public class CartItems{
         this.quantity = quantity;
     }
 
+    public double getSubTotal() {
+        return price * quantity;
+    }
+
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
@@ -79,4 +122,12 @@ public class CartItems{
         this.updatedAt = updatedAt;
     }
 
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getSubTotalField() {
+        return subTotal;
+    }
 }

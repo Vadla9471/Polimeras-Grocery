@@ -2,6 +2,7 @@ package com.Polimeras.Entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,8 +32,10 @@ public class DeliverySlots {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliverystatus;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime createdAt = LocalDateTime.now();
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
 //    setter & getters
 

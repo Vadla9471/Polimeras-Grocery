@@ -125,7 +125,7 @@ public class AuthController {
                     .build();
             case "VENDOR" -> ResponseEntity
                     .status(HttpStatus.FOUND)
-                    .location(URI.create("/api/vendor/dashboard"))
+                    .location(URI.create("/api/vendor/vendor-dashboard"))
                     .build();
             case "CUSTOMER" -> ResponseEntity
                     .status(HttpStatus.FOUND)

@@ -3,6 +3,8 @@ package com.Polimeras.Entity;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +12,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Products {
 
     @Id
@@ -22,6 +25,9 @@ public class Products {
     private Category category;
     private int stockQuantity;
     private String imageName;
+    @ManyToOne
+    @JoinColumn(name = "vendor_id")
+    private Users user;
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] imgUrl;
@@ -30,9 +36,19 @@ public class Products {
     private LocalDateTime updatedAt;
     private boolean isActive;
 
+    private String quantityType;
+
 
     //Getters And Setters
 
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
 
     public Category getCategory() {
         return category;
@@ -130,4 +146,11 @@ public class Products {
         this.updatedAt = updatedAt;
     }
 
+    public String getQuantityType() {
+        return quantityType;
+    }
+
+    public void setQuantityType(String quantityType) {
+        this.quantityType = quantityType;
+    }
 }

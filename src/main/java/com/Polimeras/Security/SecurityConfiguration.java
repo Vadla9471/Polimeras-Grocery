@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/register",
                                 "/register.html",
                                 "/css/**", "/js/**", "/images/**",
-                        "/home","/Home.html",
+                        "/home","/Home.html","/uploads/**","classpath:/uploads/",
                                 "/forgot-password","/send-otp","/reset-password-with-otp"
                                 ,"/forgot-password.html")
                         .permitAll()
@@ -96,4 +96,6 @@ public class SecurityConfiguration {
             }
         };
     }
+
+
 }

@@ -1,21 +1,21 @@
 package com.Polimeras.Entity;
 
-import java.time.LocalDateTime;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 public class Users {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String username;
     private String email;
     private String password;
@@ -23,46 +23,23 @@ public class Users {
     private String lastname;
     private String phoneNumber;
     private String address;
+    private boolean enabled = true;
     private String city;
     private String state;
     private String zipcode;
+
     @Column(name = "otp_code")
     private String otpCode;
-
-    public LocalDateTime getOtpExpiration() {
-        return otpExpiration;
-    }
-
-    public void setOtpExpiration(LocalDateTime otpExpiration) {
-        this.otpExpiration = otpExpiration;
-    }
-
-    public String getOtpCode() {
-        return otpCode;
-    }
-
-    public void setOtpCode(String otpCode) {
-        this.otpCode = otpCode;
-    }
 
     @Column(name = "otp_expiration")
     private LocalDateTime otpExpiration;
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    //    @Enumerated(EnumType.STRING)
-//    private Role role;
     private String role;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime updatedAt;
     private boolean isActive;
-
 
     public String getAddress() {
         return address;
@@ -96,8 +73,16 @@ public class Users {
         this.email = email;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public String getFirstname() {
-        return this.firstname;
+        return firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -128,6 +113,22 @@ public class Users {
         this.lastname = lastname;
     }
 
+    public String getOtpCode() {
+        return otpCode;
+    }
+
+    public void setOtpCode(String otpCode) {
+        this.otpCode = otpCode;
+    }
+
+    public LocalDateTime getOtpExpiration() {
+        return otpExpiration;
+    }
+
+    public void setOtpExpiration(LocalDateTime otpExpiration) {
+        this.otpExpiration = otpExpiration;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -144,13 +145,13 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-//    public Role getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Role role) {
-//        this.role = role;
-//    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getState() {
         return state;
@@ -183,5 +184,4 @@ public class Users {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-
 }

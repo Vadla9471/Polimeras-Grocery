@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>405 - Method Not Allowed	</title>
+    <link rel="shortcut icon" href="http://localhost:8080/uploads/leaf-logo-final.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
     <style>
-        /* Modern 404 Styling with Animation */
         body {
             font-family: 'Poppins', sans-serif;
             background: #f8f9fa;
@@ -15,20 +15,25 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            text-align: center;
             color: #333;
+            text-align: center;
+            transition: background 0.5s ease;
         }
 
         .error-container {
-            max-width: 600px;
             padding: 2rem;
+            max-width: 600px;
+        }
+
+        .company-logo {
+            width: 120px;
+            margin-bottom: 20px;
         }
 
         .error-code {
-            font-size: 8rem;
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(135deg, #ff6b6b, #3a86ff);
+            font-size: 7rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #8338ec, #3a86ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -37,41 +42,38 @@
 
         .error-title {
             font-size: 2rem;
-            margin: 1rem 0;
             color: #2b2d42;
+            margin: 0.5rem 0;
         }
 
         .error-message {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
             color: #6c757d;
+            margin: 1rem 0 2rem;
         }
 
-        .btn-404 {
+        .btn-home {
+            display: inline-block;
             background: linear-gradient(135deg, #3a86ff, #8338ec);
             color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(58, 134, 255, 0.3);
             text-decoration: none;
-            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(58, 134, 255, 0.3);
+            transition: all 0.3s ease-in-out;
         }
 
-        .btn-404:hover {
+        .btn-home:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(58, 134, 255, 0.4);
+            box-shadow: 0 8px 24px rgba(58, 134, 255, 0.4);
         }
 
-        .astronaut {
+        .illustration {
             width: 150px;
-            margin: 2rem auto;
-            animation: bounce 2s ease infinite;
+            margin: 20px auto;
+            animation: bounce 2s infinite ease-in-out;
         }
 
         @keyframes float {
@@ -92,15 +94,12 @@
 </head>
 <body>
 <div class="error-container">
-    <h1 class="error-code">404</h1>
-    <img class="astronaut" src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" alt="Lost astronaut">
-    <h2 class="error-title">Oops! Page Not Found</h2>
-    <p class="error-message">
-        The page you're looking for doesn't exist or has been moved.
-        <br>
-        Let's get you back to safety!
-    </p>
-    <a href="/hcl/" class="btn-404">Return Home</a>
+    <img class="company-logo" src="http://localhost:8080/uploads/Polimeras-logo-black.png" alt="Mana Polimeras Logo">
+    <h1 class="error-code">405</h1>
+    <img class="illustration" src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" alt="Error Icon">
+    <h2 class="error-title">Method Not Allowed</h2>
+    <p class="error-message">The request method is not supported for this resource.</p>
+    <a href="/" class="btn-home">Go Back Home</a>
 </div>
 </body>
 </html>

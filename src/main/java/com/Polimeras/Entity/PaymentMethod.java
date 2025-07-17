@@ -1,8 +1,6 @@
 package com.Polimeras.Entity;
 
 public enum PaymentMethod {
-    CREDIT_CARD,
-    DEBIT_CARD,
-    PAYPAL,
-    OTHER;
+    COD,
+    ONLINE
 }

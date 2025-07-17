@@ -1,11 +1,5 @@
 package com.Polimeras.Entity;
 
 public enum OrderStatus {
-
-    PENDING,
-    PROCESSING,
-    SHIPPED,
-    DELIVERED,
-    CANCELLED;
-
+    PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
 }

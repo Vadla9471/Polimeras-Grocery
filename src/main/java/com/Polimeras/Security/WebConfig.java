@@ -10,4 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //        registry.addResourceHandler("/profile").addResourceLocations("classpath:/nonexistent/");
 //    }
+
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("classpath:/uploads/");
+    }
 }

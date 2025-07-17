@@ -1,81 +1,59 @@
 package com.Polimeras.Entity;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import lombok.ToString;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.*;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Orders {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // ✅ fixed name
-    private Users userID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users user;
 
-    @Column(nullable = false, unique = true)
-    private int orderNumber;
+    private String orderNumber;
 
     private double totalAmount;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    @Column(name = "status")
+    private OrderStatus status = OrderStatus.PENDING;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
+    private String paymentMethod;
+
     private String shippingAddress;
-    private String billingAddress;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
+    @Column(name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    //Getters & Setters
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt = LocalDateTime.now() ;
 
+    @JsonManagedReference
+    @ToString.Exclude
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private Set<OrderItems> orderItems;
 
-    public String getBillingAddress() {
-        return billingAddress;
-    }
+    // Constructors
+    public Orders() {}
 
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
+    public Orders(Users user, String orderNumber, double totalAmount,
+                 String paymentMethod, String shippingAddress ) {
+        this.user = user;
         this.orderNumber = orderNumber;
+        this.totalAmount = totalAmount;
+        this.paymentMethod = paymentMethod;
+        this.shippingAddress = shippingAddress;
     }
 
     public PaymentStatus getPaymentStatus() {
@@ -86,20 +64,30 @@ public class Orders {
         this.paymentStatus = paymentStatus;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
+    // Getters and Setters
+
+    public Long getId() {
+        return id;
     }
 
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public Users getUser() {
+        return user;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public double getTotalAmount() {
@@ -110,6 +98,38 @@ public class Orders {
         this.totalAmount = totalAmount;
     }
 
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
@@ -118,11 +138,16 @@ public class Orders {
         this.updatedAt = updatedAt;
     }
 
-    public Users getUserID() {
-        return userID;
+    public Set<OrderItems> getOrderItems() {
+        return orderItems;
     }
 
-    public void setUserID(Users userID) {
-        this.userID = userID;
+    public void setOrderItems(Set<OrderItems> orderItems) {
+        this.orderItems = orderItems;
     }
+
+    // OrderStatus enum
+//    public enum OrderStatus {
+//        PENDING, CONFIRMED, SHIPPED, DELIVERED, CANCELLED
+//    }
 }

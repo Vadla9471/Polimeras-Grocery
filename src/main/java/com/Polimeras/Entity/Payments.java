@@ -1,5 +1,6 @@
 package com.Polimeras.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,7 +34,8 @@ public class Payments {
     private PaymentsStatus paymentStatus;
 
     private LocalDateTime paymentDate;
-    private LocalDateTime createdAt;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 //    Getters and Setters
 

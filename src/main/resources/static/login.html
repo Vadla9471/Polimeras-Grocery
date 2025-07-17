@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Polimeraas – The Farmers House</title>
-
+    <link rel="shortcut icon" href="http://localhost:8080/uploads/leaf-logo-final.png"  type="image/x-icon">
     <!-- 1️⃣  CSS right here -->
     <style>
         /* Google font */
@@ -130,8 +130,8 @@
 <div class="card">
     <!-- left side: logo -->
     <div class="logo-pane">
-        <!-- ⚠️  Replace logo.png with your own file or Spring resource -->
-        <img src="https://polimeraas.in/img/login.png" alt="Polimeraas logo" />
+<!--        <img src="https://polimeraas.in/img/login.png" alt="Polimeraas logo" />-->
+        <img src="http://localhost:8080/uploads/Polimeras-logo-black.png" alt="Polimeraas logo" />
     </div>
 
     <!-- right side: form -->
@@ -141,8 +141,8 @@
         <!-- Spring Security handles POST /doLogin -->
         <form th:action="@{/doLogin}" action="/doLogin" method="post">
             <label>
-                <span>Enter Email/Mobile number</span>
-                <input type="text" name="username" placeholder="9885504430" required />
+                <span>Enter Username</span>
+                <input type="text" name="username" placeholder="Username" required />
             </label>
 
             <label>
