@@ -15,15 +15,17 @@ import java.util.List;
  * Pure‑REST controller: JSON lists, JSON single item, and raw image bytes.
  * No security annotations, so the public site can load data without login.
  */
-@CrossOrigin                     // <- keep/remove if you serve pages from another port
+//@CrossOrigin                     // <- keep/remove if you serve pages from another port
 @RestController
+
 @RequestMapping("/api/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/products")
     public List<Products> getAll() {
         return productService.getAllProducts();
     }

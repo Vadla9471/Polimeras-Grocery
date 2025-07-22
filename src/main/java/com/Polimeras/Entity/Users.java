@@ -15,7 +15,6 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String username;
     private String email;
     private String password;
@@ -35,9 +34,9 @@ public class Users {
     private LocalDateTime otpExpiration;
 
     private String role;
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+//    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime createdAt;
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+//    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime updatedAt;
     private boolean isActive;
 

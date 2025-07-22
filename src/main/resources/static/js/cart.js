@@ -243,7 +243,10 @@ export async function renderCartItems() {
                         <h5 style="margin: 0 0 5px;">${product.name}</h5>
                         <p style="margin: 0;">Price: ₹${product.price}</p>
                         <p style="margin: 0;">Price: ₹${product.quantityType}</p>
-                        <p style="margin: 0;">Quantity in cart: ${product.stockQuantity}</p>
+<!--                        <p style="margin: 0;">Quantity in cart: ${product.stockQuantity}</p>-->
+                        <p style="margin: 0;">
+                        ${product.stockQuantity === 0 ? 'Out of Stock' : `Quantity in cart: ${product.stockQuantity}`}
+                        </p>
                     </div>
                     <div>
                         <input type="number" min="1" value="1" id="qty-${product.id}" style="width: 60px;" />

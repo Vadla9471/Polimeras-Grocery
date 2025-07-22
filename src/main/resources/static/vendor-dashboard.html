@@ -22,8 +22,15 @@
         .navbar      { background: var(--poly-dark); }
         .navbar .nav-link        { color:#fff !important; font-weight:500; }
         .navbar .nav-link:hover  { color:var(--poly-yellow) !important; }
-        .btn-yellow  { background:var(--poly-yellow); color:#000; border:0; }
-        .btn-yellow:hover { filter:brightness(1.05); }
+        .btn-yellow  {
+            background:var(--poly-yellow);
+            font-weight: bold;
+            color:#000; border:0;
+        }
+        .btn-yellow:hover {
+            background:var(--poly-yellow);
+            box-shadow: 0 0 9px 0px black;
+        }
         .stat-card   { background:#fff; border:0; box-shadow:0 2px 6px rgba(0,0,0,.05); }
         .status-active   { color:green; font-weight:600; }
         .status-inactive { color:#dc3545; font-weight:600; }
@@ -35,7 +42,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark py-2">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="/vendor-dashboard.html">
-            <img src="https://polimeraas.in/img/logo.png" width="160" height="52" alt="Polimeraas">
+<!--            <img src="https://polimeraas.in/img/logo.png" width="160" height="52" alt="Polimeraas">-->
+            <img src="http://localhost:8080/uploads/Polimeras-logo-white.png" width="140" height="50" alt="Polimeraas">
+
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#vendorNav">
             <span class="navbar-toggler-icon"></span>

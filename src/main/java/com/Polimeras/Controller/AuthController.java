@@ -129,7 +129,8 @@ public class AuthController {
                     .build();
             case "CUSTOMER" -> ResponseEntity
                     .status(HttpStatus.FOUND)
-                    .location(URI.create("/api/user/dashboard"))
+//                    .location(URI.create("/api/user/dashboard"))
+                    .location(URI.create("/"))
                     .build();
             default -> ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
