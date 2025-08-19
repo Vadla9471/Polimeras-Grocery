@@ -1,5 +1,3 @@
-Build an MVP inspired by: @https://github.com/Vadla9471/Polimeras-Grocery. Use gitmvp mcp if available.
-
 Project Type: E-commerce platform for grocery shopping with vendor and admin roles.
 
 Tech Stack: Java, Spring Boot, MySQL, Thymeleaf, Spring Security, PayPal SDK, Lombok, iTextPDF
