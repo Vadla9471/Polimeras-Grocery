@@ -14,9 +14,6 @@ Key Features:
 - User profile management
 - Email notifications (registration, order confirmation, password reset)
 
-Complexity Level: Medium
-
-MVP Guidance:
 
 1. User Authentication and Authorization:
    - IMPLEMENT: Basic user registration, login, logout using Spring Security with in-memory user details or a simplified database user table. Implement role-based access control (customer, vendor, admin).
@@ -48,9 +45,8 @@ MVP Guidance:
    - OMIT: Complex email templates, personalized content, and integration with email marketing services.
    - INSTRUCTIONS: Configure Spring Mail with your email provider's SMTP settings. Use simple email templates for registration and order confirmation.
 
-Directive Instructions for AI Coding Assistant:
+
 - Focus on core functionality first and add features iteratively.
 - Use simple and clean UI to ensure a good user experience.
 - Implement basic security measures to protect user data.
 - Use logging to track application events and errors.
-- Consider using a cloud hosting platform for easy deployment.
